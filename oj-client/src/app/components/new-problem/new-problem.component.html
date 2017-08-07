@@ -1,0 +1,38 @@
+<div>
+   <form #formRef="ngForm">
+      <div class="form-group">
+        <label for="problemName">Problem Name</label>
+        <input type="text" class="form-control" id="problemName" name="problemName"
+        required placeholder="Input problem name"
+        [(ngModel)]="newProblem.name" required #problemName="ngModel">
+        <div [hidden]="problemName.valid"
+            class="alert alert-danger">
+          Problem Name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="problemDesc">Problem Description</label>
+        <input type="text" class="form-control" id="problemDesc" name="problemDesc"
+        required placeholder="Input description"
+        [(ngModel)]="newProblem.desc" required #problemDesc="ngModel"> 
+         <div [hidden]="problemDesc.valid"
+            class="alert alert-danger">
+          Problem Description is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="difficulty">Difficulty</label>
+        <select class="form-control" name="difficulty" 
+        id="difficulty" [(ngModel)]="newProblem.difficulty">
+          <option *ngFor="let diff of difficulties" [value]="diff">
+            {{diff}}
+          </option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button [disabled]="!formRef.form.valid" (click)="addProblem()" type="submit" class="btn btn-primary pull-right">Submit</button>
+        </div>
+      </div>
+    </form>
+</div>
